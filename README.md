@@ -7,5 +7,8 @@ This is designed for the board known as the "blue pill" but should be compatiabl
 - Macros
 - Lighting
 - Controller emulation
-- Mouse suppourt for plugins and macros
+- Mouse support for plugins and macros
 - Plugin & Layout repository
+
+# Plugins
+Plugins are single header files and are responsible for enabling and disabling themselves and need to be added to the handleFN function and included  
