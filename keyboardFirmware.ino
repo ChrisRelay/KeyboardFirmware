@@ -5,7 +5,7 @@
 #include "key.h"
 
 //Change to desired layout
-#include "layouts/uk_76.h"
+#include "layouts/iso_76.h"
 
 //Keeps track if a key is being held down
 unsigned char keypress[rows][columns];
