@@ -46,12 +46,12 @@ void setup() {
 
 	//Pull down all columns and set as inputs
 	for (int i = 0; i < columns; i++) {
-		gpio_set_mode(GPIOB, column[i], GPIO_INPUT_PD);
+		gpio_set_mode(GPIOB, column[i], GPIO_OUTPUT_PP);
 	}
 
 	//Set all rows as outputs
 	for (int i = 0; i < rows; i++) {
-		gpio_set_mode(GPIOA, row[i], GPIO_OUTPUT_PP);
+		gpio_set_mode(GPIOA, row[i], GPIO_INPUT_PD);
 	}
 
 	//Setup keyboard device
@@ -71,13 +71,13 @@ void loop() {
 	//Check and send keys
 	for (int rowI = 0; rowI < rows; rowI++) {
 		//Power up GPIO
-		gpio_write_bit(GPIOA, row[rowI], HIGH);
+		gpio_write_bit(GPIOB, column[columnI], HIGH);
 
 		//Go through columns
 		for (int columnI = 0; columnI < columns; columnI++) {
 
 			//Check if power from row is coming to column 
-			if (gpio_read_bit(GPIOB, column[columnI])) {
+			if (gpio_read_bit(GPIOA, row[rowI])) {
 			
 				//Track key is pressed
 				keypress[rowI][columnI] = true;
@@ -105,7 +105,7 @@ void loop() {
 		}
 
 		//Unpower row
-		gpio_write_bit(GPIOA, row[rowI], LOW);
+		gpio_write_bit(GPIOB, column[columnI], LOW);
 
 	}
 	
